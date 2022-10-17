@@ -5,8 +5,11 @@ zip: github.com/fifthtry/event/archive/refs/heads/main.zip
 download-base-url: https://raw.githubusercontent.com/fifthtry/event/main
 
 -- fpm.dependency: fifthtry.github.io/package-doc as pd
+-- fpm.dependency: fifthtry.github.io/common as common
+
 
 -- fpm.auto-import: pd
+-- fpm.auto-import: common
 -- fpm.auto-import: fpm
 -- fpm.auto-import: pd/typography as tf
 -- fpm.auto-import: pd/code-block as cb
