@@ -242,7 +242,6 @@ color: $fpm.color.main.text
 role: $fpm.type.fine-print
 color: $fpm.color.main.custom.one
 style: bold
-link: $venue.website
 
 --- container: ftd.main
 
