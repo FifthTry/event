@@ -9,6 +9,7 @@ if: $ftd.device == mobile
 
 
 
+
 -- ft.page: Event
 
 Event package is created via using FTD language to create events web pages. With
@@ -86,14 +87,13 @@ boolean hero: true
 boolean right-panel: true
 ftd.image-src src:
 optional string timestamp:
-optional string platform:
-optional string platform-link:
 optional string day:
 optional string month:
 optional string date:
 optional string share-link:
 optional string share-title:
 common.host host:
+common.venue venue:
 optional body body:
 width: fill
 open: true
@@ -164,6 +164,7 @@ style: bold
 
 --- ftd.row:
 margin-top: $fpm.space.space-3
+id: event-details
 
 --- ftd.image:
 src: $assets.files.static.calendar.svg
@@ -177,6 +178,9 @@ role: $fpm.type.fine-print
 color: $fpm.color.main.custom.nine
 style: bold
 
+--- ftd.row:
+if: $venue.link is not null
+
 --- ftd.image:
 src: $assets.files.static.video.svg
 width: 18
@@ -185,11 +189,60 @@ align: center
 margin-left: 20
 margin-right: 10
 
---- ftd.text: $platform
+--- ftd.text: $venue.name
 role: $fpm.type.fine-print
 color: $fpm.color.main.custom.three
 style: bold
-link: $platform-link
+link: $venue.link
+
+--- container: ftd.main
+
+--- ftd.column:
+if: $venue.link is null
+width: fill
+margin-top: $fpm.space.space-6
+
+--- ftd.row:
+
+--- ftd.image:
+src: $assets.files.static.map.svg
+width: 18
+height: 18
+align: center
+margin-right: 10
+link: $venue.location
+
+--- ftd.text: $venue.name
+role: $fpm.type.copy-large
+color: $fpm.color.main.custom.one
+style: bold
+link: $venue.location
+
+--- container: ftd.main
+
+--- ftd.text: $venue.address
+role: $fpm.type.fine-print
+color: $fpm.color.main.custom.one
+style: bold
+margin-left: $fpm.space.space-6
+margin-top: $fpm.space.space-3
+
+--- container: ftd.main
+
+--- ftd.row:
+spacing: 8
+margin-left: $fpm.space.space-6
+margin-top: $fpm.space.space-3
+
+--- ftd.text: Website:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+
+--- ftd.text: $venue.website
+role: $fpm.type.fine-print
+color: $fpm.color.main.custom.one
+style: bold
+link: $venue.website
 
 --- container: ftd.main
 

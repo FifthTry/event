@@ -8,6 +8,13 @@ email: amitu@fifthtry.com
 website: www.fifthtry.com
 avatar: $assets.files.static.amitu.jpg
 
+-- common.venue venue:
+name: 91Springboard
+location: https://goo.gl/maps/zJb9qGMSq6JcUpd58
+address: 175 & 176, Bannerghatta Main Rd, Dollars Colony, Phase 4, J. P. Nagar, Bengaluru, Karnataka 560076
+website: Zoom/link
+
+
 -- ftd.column:
 width: fill
 
@@ -19,12 +26,11 @@ width: fill
 -- event.event: FTD Workshop on Todo App
 src: $assets.files.static.workshop-21st-oct.png
 host: $amitu
+venue: $venue
 month: Oct
 date: 21
 day: Friday
 timestamp: Fri, 21 Oct 2022, 10:00 GMT+5:30
-platform: Zoom
-platform-link: https://fifthtry.com
 share-title: Share this event
 share-link: buttonlink
 
