@@ -13,6 +13,8 @@ width: fill
 
 -- ft.page: Event
 
+[Go back](/)
+
 ; create new event package - add host details into common-
 -- event.event: FTD Workshop on Todo App
 src: $assets.files.static.workshop-21st-oct.png
