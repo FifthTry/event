@@ -1,4 +1,341 @@
 -- import: fifthtry.github.io/event/assets
+-- import: fifthtry.github.io/package-doc/doc as pd
+
+-- boolean is-mobile: false
+
+-- is-mobile:true
+if: $ftd.device == mobile
+
+
+
+
+-- ft.page: Event
+
+Event package is created via using FTD language to create events web pages. With
+its simple and easy to use features its fun to create your FTD events. 
+
+Take a look at below documentation to know how to create events.
+
+
+
+
+-- pd.package: Event and its usage
+name: fifthtry.github.io/event
+
+To use `-- evemt` on your web package, add below into `FPM.ftd` file:
+
+-- cb.code:
+lang: ftd
+
+\-- fpm.dependency: fifthtry.github.io/event as event
+\-- fpm.auto-import: event
+
+
+
+
+
+-- tf.markdown:
+
+Once you add above lines into your web package, add `input-box` into your `.ftd` 
+files:
+
+-- cb.code: Example code for `-- input-box`
+lang: ftd
+
+\-- common.host amitu: Amit Upadhyay
+title: CEO, FifthTry, Inc
+email: amitu@fifthtry.com
+website: www.fifthtry.com
+avatar: $assets.files.static.amitu.jpg
+
+\-- event.event: FTD Workshop on Todo App
+src: $assets.files.static.workshop-21st-oct.png
+host: $amitu
+month: Oct
+date: 21
+day: Friday
+timestamp: Fri, 21 Oct 2022, 10:00 GMT+5:30
+platform: Zoom
+platform-link: https://fifthtry.com
+share-title: Share this event
+share-link: buttonlink
+
+body markdown here
+
+
+
+
+-- tf.h3: Event demo:
+
+[Click here to see event demo](/event/)
+
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.column event:
+optional caption title:
+boolean hero: true
+boolean right-panel: true
+ftd.image-src src:
+optional string timestamp:
+optional string platform:
+optional string platform-link:
+optional string day:
+optional string month:
+optional string date:
+optional string share-link:
+optional string share-title:
+common.host host:
+optional body body:
+width: fill
+open: true
+append-at: event-container
+
+--- ftd.column:
+if: $hero
+width: fill
+id: inner-wrap
+
+--- ftd.column:
+anchor: parent
+bottom: -40
+right: 50
+border-radius: 4
+shadow-color: $fpm.color.main.background.step-2
+shadow-offset-x: 1
+shadow-offset-y: 1
+shadow-size: 1
+shadow-blur: 0
+width: 120
+
+--- ftd.text: $month
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.custom.four
+width: fill
+text-align: center
+style: bold
+border-top-radius: 4
+padding: 4
+
+--- ftd.text: $date
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.custom.three
+width: fill
+text-align: center
+style: bold
+padding-vertical: $fpm.space.space-3
+
+--- ftd.text: $day
+role: $fpm.type.copy-large
+color: $fpm.color.main.success.text
+background-color: $fpm.color.main.custom.three
+width: fill
+text-align: center
+border-bottom-radius: 4
+padding: 2
+
+--- container: inner-wrap
+
+--- ftd.image:
+src: $src
+width: fill
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-12
+
+--- ftd.text: $title
+width: fill
+role: $fpm.type.heading-large
+color: $fpm.color.main.text-strong
+style: bold
+
+--- ftd.row:
+margin-top: $fpm.space.space-3
+
+--- ftd.image:
+src: $assets.files.static.calendar.svg
+width: 16
+height: 16
+align: center
+margin-right: 6
+
+--- ftd.text: $timestamp
+role: $fpm.type.fine-print
+color: $fpm.color.main.custom.nine
+style: bold
+
+
+--- ftd.image:
+src: $assets.files.static.video.svg
+width: 18
+height: 18
+align: center
+margin-left: 20
+margin-right: 10
+
+--- ftd.text: $platform
+role: $fpm.type.fine-print
+color: $fpm.color.main.custom.three
+style: bold
+link: $platform-link
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-6
+
+--- body-wrap:
+id: event-container
+host: $host.name
+host-email: $host.email
+share-title: $share-title
+share-link: $share-link
+host-website: $host.website
+host-profile: $host.title
+right-panel: $right-panel
+host-avatar: $host.avatar
+body: $body
+
+
+
+
+
+
+
+-- ftd.column body-wrap:
+boolean right-panel: true
+optional string host:
+optional string host-profile:
+optional string host-email:
+optional string host-website:
+optional string share-title:
+optional string share-link:
+optional ftd.image-src host-avatar: 
+optional body body:
+open: true
+append-at: body-container
+
+--- ftd.row:
+width: fill
+id: body-wrapper
+spacing: 32
+
+--- ftd.column:
+if: $right-panel
+width: percent 70
+id: body-container
+border-right: 1
+border-color: $fpm.color.main.border
+padding-right: 32
+margin-top: 32
+
+--- ftd.text:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+text: $body
+margin-top: -48
+
+--- container: body-wrapper
+
+--- ftd.column:
+if: not $right-panel
+width: fill
+id: body-container
+
+--- ftd.text:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+text: $body
+margin-top: -48
+
+--- container: body-wrapper
+
+--- ftd.column:
+if: $right-panel
+width: percent 30
+margin-top: $fpm.space.space-10
+id: host-panel
+
+--- ftd.column:
+width: fill
+id: host-details
+margin-bottom: $fpm.space.space-8
+
+--- ftd.text: Hosts:
+role: $fpm.type.copy-large
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+spacing: 8
+
+--- ftd.image:
+src: $host-avatar
+width: 32
+height: 32
+align: top
+
+--- ftd.text: $host
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+link: $host-website
+
+--- container: host-details
+
+--- ftd.text: $host-profile
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+link: $host-website
+margin-left: $fpm.space.space-8
+
+--- container: host-details
+
+--- ftd.column:
+margin-left: $fpm.space.space-8
+margin-top: $fpm.space.space-2
+
+--- ftd.text: $host-email
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+link: $host-email
+style: bold
+
+--- container: host-panel
+
+--- ftd.row:
+spacing: 8
+border-width: 1
+border-color: $fpm.color.main.border
+padding: $fpm.space.space-4
+border-radius: 6
+background-color: $fpm.color.main.background.step-1
+background-color  if $MOUSE-IN: $fpm.color.main.background.step-2
+link: $share-link
+
+
+--- ftd.image:
+src: $assets.files.static.share-button.svg
+width: 18
+height: 18
+align: center
+
+--- ftd.text: $share-title
+role: $fpm.type.copy-large
+color: $fpm.color.main.custom.three
 
 
 
