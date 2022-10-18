@@ -85,6 +85,7 @@ body markdown here
 optional caption title:
 boolean hero: true
 boolean right-panel: true
+boolean form-active: true
 ftd.image-src src:
 optional string timestamp:
 optional string day:
@@ -115,6 +116,8 @@ shadow-offset-y: 1
 shadow-size: 1
 shadow-blur: 0
 width: 120
+width if $is-mobile: 80
+id: floating-wrap
 
 --- ftd.text: $month
 role: $fpm.type.copy-large
@@ -134,9 +137,23 @@ width: fill
 text-align: center
 style: bold
 padding-vertical: $fpm.space.space-3
+padding-vertical if $is-mobile: $fpm.space.space-1
 
 --- ftd.text: $day
+if: not $is-mobile
 role: $fpm.type.copy-large
+color: $fpm.color.main.success.text
+background-color: $fpm.color.main.custom.three
+width: fill
+text-align: center
+border-bottom-radius: 4
+padding: 2
+
+--- container: floating-wrap
+
+--- ftd.text: $day
+if: $is-mobile
+role: $fpm.type.copy-tight
 color: $fpm.color.main.success.text
 background-color: $fpm.color.main.custom.three
 width: fill
@@ -259,7 +276,11 @@ host-website: $host.website
 host-profile: $host.title
 right-panel: $right-panel
 host-avatar: $host.avatar
+form-active: $form-active
 body: $body
+
+
+
 
 
 
@@ -270,7 +291,7 @@ body: $body
 -- ftd.column body-wrap:
 boolean right-panel: true
 boolean share-button: false
-boolean form-active: true
+boolean form-active: $PARENT.form-active
 optional string host:
 optional string host-profile:
 optional string host-email:
@@ -283,6 +304,7 @@ open: true
 append-at: body-container
 
 --- ftd.row:
+if: not $is-mobile
 width: fill
 id: body-wrapper
 spacing: 32
@@ -296,70 +318,8 @@ border-color: $fpm.color.main.border
 padding-right: 32
 margin-top: 32
 
---- ftd.column:
-width: fill
-id: left-panel
-
---- ftd.column:
-if: $form-active
-width: fill
-spacing: 16
-
---- ftd.text: Registration
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-
---- ftd.text: 
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-text: Hello! To join the event, please register below.
-
---- ftd.column:
-width: fill
-margin-bottom: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
-border-radius: 8
-
---- form.input-box: Name
-label-top: true
-$value: name
-$error: This field is mandatory
-placeholder: Your name
-
---- form.input-box: Email
-label-top: true
-$value: name
-$error: This field is mandatory
-placeholder: you@email.com
-
---- ftd.column:
-width: fill
-margin-left: $fpm.space.space-4
-margin-top: $fpm.space.space-6
-margin-bottom: $fpm.space.space-4
-
---- button.button: Register
-role: primary
-large: true
-
---- container: left-panel
-
---- ftd.column:
-if: not $form-active
-width: fill
-margin-bottom: $fpm.space.space-8
-spacing: 16
-
---- ftd.text: Registration
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-
---- ftd.text: 
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-text: This event is no longer taking registrations.
-
---- container: left-panel
+--- event-form:
+form-active: $form-active
 
 --- ftd.text:
 role: $fpm.type.fine-print
@@ -369,11 +329,13 @@ margin-top: -48
 
 --- container: body-wrapper
 
-
 --- ftd.column:
 if: not $right-panel
 width: fill
 id: body-container
+
+--- event-form:
+form-active: $form-active
 
 --- ftd.text:
 role: $fpm.type.fine-print
@@ -455,5 +417,193 @@ align: center
 role: $fpm.type.copy-large
 color: $fpm.color.main.custom.three
 
+--- container: ftd.main
 
+;mobile view starts
+--- ftd.column:
+if: $is-mobile
+width: fill
+id: body-wrapper
+spacing: 32
+
+--- ftd.column:
+if: not $right-panel
+width: fill
+id: body-container
+
+--- event-form:
+form-active: $form-active
+
+--- ftd.text:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+text: $body
+margin-top: -48
+
+--- container: body-wrapper
+
+--- ftd.column:
+if: $right-panel
+width: fill
+margin-top: $fpm.space.space-8
+id: host-panel
+
+--- ftd.column:
+width: fill
+id: host-details
+margin-bottom: $fpm.space.space-8
+
+--- ftd.text: Host:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+spacing: 8
+
+--- ftd.image:
+src: $host-avatar
+width: 32
+height: 32
+align: top
+
+--- ftd.text: $host
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+link: $host-website
+
+--- container: host-details
+
+--- ftd.text: $host-profile
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+link: $host-website
+margin-left: $fpm.space.space-8
+
+--- container: host-details
+
+--- ftd.column:
+margin-left: $fpm.space.space-8
+margin-top: $fpm.space.space-2
+
+--- ftd.text: $host-email
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+style: bold
+
+--- container: host-panel
+
+--- ftd.row:
+if: $share-button
+spacing: 8
+border-width: 1
+border-color: $fpm.color.main.border
+padding: $fpm.space.space-4
+border-radius: 6
+background-color: $fpm.color.main.background.step-1
+background-color  if $MOUSE-IN: $fpm.color.main.background.step-2
+link: $share-link
+
+--- ftd.image:
+src: $assets.files.static.share-button.svg
+width: 18
+height: 18
+align: center
+
+--- ftd.text: $share-title
+role: $fpm.type.copy-large
+color: $fpm.color.main.custom.three
+
+--- container: body-wrapper
+
+--- ftd.column:
+if: $right-panel
+width: fill
+id: body-container
+margin-top: 32
+
+--- event-form:
+form-active: $form-active
+
+--- ftd.text:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+text: $body
+margin-top: -48
+
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.column event-form:
+boolean form-active: $PARENT.form-active
+width: fill
+
+--- ftd.column:
+if: $form-active
+id: left-panel
+width: fill
+spacing: 16
+
+--- ftd.text: Registration
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- ftd.text: 
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+text: Hello! To join the event, please register below.
+
+--- ftd.column:
+width: fill
+margin-bottom: $fpm.space.space-8
+background-color: $fpm.color.main.background.step-1
+border-radius: 8
+
+--- form.input-box: Name
+label-top: true
+$value: name
+$error: This field is mandatory
+placeholder: Your name
+
+--- form.input-box: Email
+label-top: true
+$value: name
+$error: This field is mandatory
+placeholder: you@email.com
+
+--- ftd.column:
+width: fill
+margin-left: $fpm.space.space-4
+margin-top: $fpm.space.space-6
+margin-bottom: $fpm.space.space-4
+
+--- button.button: Register
+role: primary
+large: true
+
+--- container: left-panel
+
+--- ftd.column:
+if: not $form-active
+width: fill
+margin-bottom: $fpm.space.space-8
+spacing: 16
+id: left-panel
+
+--- ftd.text: Registration
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- ftd.text: 
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+text: This event is no longer taking registrations.
 
