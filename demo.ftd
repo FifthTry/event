@@ -17,9 +17,7 @@ website: www.91springboard.com
 -- ftd.column:
 width: fill
 
--- ft.page: Event
-
-[Go back](/event)
+-- ft.page: 
 
 ; create new event package - add host details into common-
 -- event.event: FTD Workshop on Todo App
