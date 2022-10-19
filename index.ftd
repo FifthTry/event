@@ -107,8 +107,8 @@ id: inner-wrap
 
 --- ftd.column:
 anchor: parent
-bottom: -40
-right: 50
+bottom: -60
+right: 30
 border-radius: 4
 shadow-color: $fpm.color.main.background.step-2
 shadow-offset-x: 1
