@@ -199,7 +199,7 @@ style: bold
 
 --- ftd.text: $presence
 role: $fpm.type.fine-print
-color: $fpm.color.main.custom.one
+color: $fpm.color.main.cta-primary.base
 style: bold
 margin-left: 10
 
