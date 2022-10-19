@@ -286,7 +286,7 @@ margin-top: -48
 --- ftd.column:
 if: $right-panel
 width: percent 30
-margin-top: $fpm.space.space-10
+margin-top: $fpm.space.space-7
 id: host-panel
 
 --- ftd.column:
@@ -296,7 +296,7 @@ margin-bottom: $fpm.space.space-8
 
 --- ftd.text: Host
 role: $fpm.type.heading-small
-color: $fpm.color.main.text
+color: $fpm.color.main.text-strong
 margin-bottom: $fpm.space.space-4
 
 --- ftd.row:
@@ -335,9 +335,8 @@ style: bold
 
 --- container: host-panel
 
---- ftd.column:
+--- ftd.row:
 if: $venue.link is not null
-margin-bottom: $fpm.space.space-8
 
 --- ftd.image:
 src: $assets.files.static.video.svg
@@ -346,11 +345,11 @@ height: 18
 align: center
 margin-left: 20
 margin-right: 10
+link: $venue.link
 
 --- ftd.text: $venue.name
-role: $fpm.type.fine-print
-color: $fpm.color.main.custom.three
-style: bold
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
 link: $venue.link
 
 --- container: host-panel
@@ -361,7 +360,7 @@ width: fill
 
 --- ftd.text: Venue
 role: $fpm.type.heading-small
-color: $fpm.color.main.text
+color: $fpm.color.main.text-strong
 margin-bottom: $fpm.space.space-4
 
 --- ftd.row:
@@ -376,16 +375,15 @@ link: $venue.location
 
 --- ftd.text: $venue.name
 role: $fpm.type.copy-large
-color: $fpm.color.main.custom.one
-style: bold
+color: $fpm.color.main.text-strong
 link: $venue.location
 
 --- container: host-panel
 
 --- ftd.text: $venue.address
+if: $venue.address is not null
 role: $fpm.type.fine-print
-color: $fpm.color.main.custom.one
-style: bold
+color: $fpm.color.main.text
 margin-left: $fpm.space.space-6
 margin-top: $fpm.space.space-3
 
@@ -395,10 +393,6 @@ margin-top: $fpm.space.space-3
 spacing: 8
 margin-left: $fpm.space.space-6
 margin-top: $fpm.space.space-3
-
---- ftd.text: Website:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
 
 --- ftd.text: $venue.website
 role: $fpm.type.fine-print
@@ -456,7 +450,7 @@ margin-top: -48
 --- ftd.column:
 if: $right-panel
 width: fill
-margin-top: $fpm.space.space-8
+margin-top: $fpm.space.space-6
 id: host-panel
 
 
@@ -478,6 +472,7 @@ src: $host.avatar
 width: 32
 height: 32
 align: top
+border-radius: 500
 
 --- ftd.text: $host.name
 role: $fpm.type.copy-large
@@ -505,9 +500,8 @@ style: bold
 
 --- container: host-panel
 
---- ftd.column:
+--- ftd.row:
 if: $venue.link is not null
-margin-bottom: $fpm.space.space-8
 
 --- ftd.image:
 src: $assets.files.static.video.svg
@@ -516,11 +510,11 @@ height: 18
 align: center
 margin-left: 20
 margin-right: 10
+link: $venue.link
 
 --- ftd.text: $venue.name
-role: $fpm.type.fine-print
-color: $fpm.color.main.custom.three
-style: bold
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
 link: $venue.link
 
 --- container: host-panel
@@ -546,15 +540,16 @@ link: $venue.location
 
 --- ftd.text: $venue.name
 role: $fpm.type.copy-large
-color: $fpm.color.main.custom.one
+color: $fpm.color.main.text-strong
 style: bold
 link: $venue.location
 
 --- container: host-panel
 
 --- ftd.text: $venue.address
+if: $venue.address is not null
 role: $fpm.type.fine-print
-color: $fpm.color.main.custom.one
+color: $fpm.color.main.text
 style: bold
 margin-left: $fpm.space.space-6
 margin-top: $fpm.space.space-3
@@ -565,10 +560,6 @@ margin-top: $fpm.space.space-3
 spacing: 8
 margin-left: $fpm.space.space-6
 margin-top: $fpm.space.space-3
-
---- ftd.text: Website:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
 
 --- ftd.text: $venue.website
 role: $fpm.type.fine-print
