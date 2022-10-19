@@ -93,6 +93,7 @@ optional string month:
 optional string date:
 optional string share-link:
 optional string share-title:
+optional string presence:
 common.host host:
 common.venue venue:
 optional body body:
@@ -196,6 +197,12 @@ role: $fpm.type.fine-print
 color: $fpm.color.main.custom.nine
 style: bold
 
+--- ftd.text: $presence
+role: $fpm.type.fine-print
+color: $fpm.color.main.custom.one
+style: bold
+margin-left: 10
+
 --- container: ftd.main
 
 --- ftd.column:
@@ -283,6 +290,52 @@ margin-top: $fpm.space.space-10
 id: host-panel
 
 --- ftd.column:
+width: fill
+id: host-details
+margin-bottom: $fpm.space.space-8
+
+--- ftd.text: Host:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+spacing: 8
+
+--- ftd.image:
+src: $host.avatar
+width: 32
+height: 32
+align: top
+border-radius: 500
+
+--- ftd.text: $host.name
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+link: $host.website
+
+--- container: host-details
+
+--- ftd.text: $host.title
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+link: $host.website
+margin-left: $fpm.space.space-8
+
+--- container: host-details
+
+--- ftd.column:
+margin-left: $fpm.space.space-8
+margin-top: $fpm.space.space-2
+
+--- ftd.text: $host.email
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+style: bold
+
+--- container: host-panel
+
+--- ftd.column:
 if: $venue.link is not null
 margin-bottom: $fpm.space.space-8
 
@@ -307,7 +360,7 @@ if: $venue.link is null
 width: fill
 
 --- ftd.text: Venue:
-role: $fpm.type.copy-large
+role: $fpm.type.heading-small
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-4
 
@@ -350,53 +403,6 @@ color: $fpm.color.main.text
 --- ftd.text: $venue.website
 role: $fpm.type.fine-print
 color: $fpm.color.main.custom.one
-style: bold
-
---- container: host-panel
-
---- ftd.column:
-width: fill
-id: host-details
-margin-bottom: $fpm.space.space-8
-margin-top: $fpm.space.space-8
-
---- ftd.text: Host:
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-4
-
---- ftd.row:
-spacing: 8
-
---- ftd.image:
-src: $host.avatar
-width: 32
-height: 32
-align: top
-border-radius: 500
-
---- ftd.text: $host.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $host.website
-
---- container: host-details
-
---- ftd.text: $host.title
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-link: $host.website
-margin-left: $fpm.space.space-8
-
---- container: host-details
-
---- ftd.column:
-margin-left: $fpm.space.space-8
-margin-top: $fpm.space.space-2
-
---- ftd.text: $host.email
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
 style: bold
 
 --- container: host-panel
@@ -453,6 +459,52 @@ width: fill
 margin-top: $fpm.space.space-8
 id: host-panel
 
+
+--- ftd.column:
+width: fill
+id: host-details
+margin-bottom: $fpm.space.space-8
+
+--- ftd.text: Host:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+spacing: 8
+
+--- ftd.image:
+src: $host.avatar
+width: 32
+height: 32
+align: top
+
+--- ftd.text: $host.name
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+link: $host.website
+
+--- container: host-details
+
+--- ftd.text: $host.title
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+link: $host.website
+margin-left: $fpm.space.space-8
+
+--- container: host-details
+
+--- ftd.column:
+margin-left: $fpm.space.space-8
+margin-top: $fpm.space.space-2
+
+--- ftd.text: $host.email
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+style: bold
+
+--- container: host-panel
+
 --- ftd.column:
 if: $venue.link is not null
 margin-bottom: $fpm.space.space-8
@@ -521,52 +573,6 @@ color: $fpm.color.main.text
 --- ftd.text: $venue.website
 role: $fpm.type.fine-print
 color: $fpm.color.main.custom.one
-style: bold
-
---- container: host-panel
-
---- ftd.column:
-width: fill
-id: host-details
-margin-bottom: $fpm.space.space-8
-margin-top: $fpm.space.space-8
-
---- ftd.text: Host:
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-margin-bottom: $fpm.space.space-4
-
---- ftd.row:
-spacing: 8
-
---- ftd.image:
-src: $host.avatar
-width: 32
-height: 32
-align: top
-
---- ftd.text: $host.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $host.website
-
---- container: host-details
-
---- ftd.text: $host.title
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-link: $host.website
-margin-left: $fpm.space.space-8
-
---- container: host-details
-
---- ftd.column:
-margin-left: $fpm.space.space-8
-margin-top: $fpm.space.space-2
-
---- ftd.text: $host.email
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
 style: bold
 
 --- container: host-panel
