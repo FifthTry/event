@@ -529,19 +529,18 @@ color: $fpm.color.main.text-strong
 margin-bottom: $fpm.space.space-4
 
 --- ftd.row:
+spacing: 8
 
 --- ftd.image:
 src: $assets.files.static.map.svg
 width: 18
 height: 18
 align: center
-margin-right: 10
 link: $venue.location
 
 --- ftd.text: $venue.name
 role: $fpm.type.copy-large
 color: $fpm.color.main.text-strong
-style: bold
 link: $venue.location
 
 --- container: host-panel
