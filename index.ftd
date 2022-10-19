@@ -294,7 +294,7 @@ width: fill
 id: host-details
 margin-bottom: $fpm.space.space-8
 
---- ftd.text: Host:
+--- ftd.text: Host
 role: $fpm.type.heading-small
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-4
@@ -359,7 +359,7 @@ link: $venue.link
 if: $venue.link is null
 width: fill
 
---- ftd.text: Venue:
+--- ftd.text: Venue
 role: $fpm.type.heading-small
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-4
@@ -465,7 +465,7 @@ width: fill
 id: host-details
 margin-bottom: $fpm.space.space-8
 
---- ftd.text: Host:
+--- ftd.text: Host
 role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
 margin-bottom: $fpm.space.space-4
@@ -529,7 +529,7 @@ link: $venue.link
 if: $venue.link is null
 width: fill
 
---- ftd.text: Venue:
+--- ftd.text: Venue
 role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
 margin-bottom: $fpm.space.space-4
