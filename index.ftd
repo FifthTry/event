@@ -12,8 +12,9 @@ if: $ftd.device == mobile
 
 -- ft.page: Event
 
-Event package is created via using FTD language to create events web pages. With
-its simple and easy to use features its fun to create your FTD events. 
+Event package is created via using FTD language to publish events on FTD web 
+pages. With its simple and easy to use features its fun to create your FTD 
+events. 
 
 Take a look at below documentation to know how to create events.
 
@@ -23,7 +24,10 @@ Take a look at below documentation to know how to create events.
 -- pd.package: Event and its usage
 name: fifthtry.github.io/event
 
-To use `-- evemt` on your web package, add below into `FPM.ftd` file:
+To use `-- evemt` on your web package, add below into `FPM.ftd` file. 
+
+Event has dependency on `-- common.host` and `-- common.venue` data records. 
+So, you need to add `common` component dependency, add it as shown below:
 
 -- cb.code:
 lang: ftd
@@ -31,38 +35,47 @@ lang: ftd
 \-- fpm.dependency: fifthtry.github.io/event as event
 \-- fpm.auto-import: event
 
+\-- fpm.dependency: fifthtry.github.io/common as common
+\-- fpm.auto-import: common
 
 
 
 
 -- tf.markdown:
 
-Once you add above lines into your web package, add `input-box` into your `.ftd` 
-files:
+Once you add above lines into your web package, add `event` into your `.ftd` 
+files. Also add host and venue details into `-- common.host` record as shown 
+below:
 
--- cb.code: Example code for `-- input-box`
+-- cb.code: Example code for `-- event`
 lang: ftd
 
 \-- common.host amitu: Amit Upadhyay
 title: CEO, FifthTry, Inc
 email: amitu@fifthtry.com
 website: www.fifthtry.com
-avatar: $assets.files.static.amitu.jpg
+avatar: $assets.files.images.events.amitu.jpg
+
+\-- common.venue venue:
+name: Zoom
+location: Zoo
+website: will-be-updated-soon
+link: will-be-updated-soon
 
 \-- event.event: FTD Workshop on Todo App
-src: $assets.files.static.workshop-21st-oct.png
+src: $assets.files.images.events.workshop-21st-oct.png  
+---> events banner image recommonded size 2000x1000px
 host: $amitu
+venue: $venue
 month: Oct
 date: 21
 day: Friday
-timestamp: Fri, 21 Oct 2022, 10:00 GMT+5:30
-platform: Zoom
-platform-link: https://fifthtry.com
-share-title: Share this event
-share-link: buttonlink
+timestamp: Fri, 21 Oct 2022, 12:00 noon
+presence: In Person
 
-body markdown here
 
+body text here. You can also use FTD markup, typography or any FTD 
+component inside this body text.
 
 
 

@@ -19,7 +19,7 @@ width: fill
 
 -- ft.page: 
 
-; create new event package - add host details into common-
+;create new event package - add host details into common-
 -- event.event: FTD Workshop on Todo App
 src: $assets.files.static.workshop-21st-oct.png
 host: $amitu
@@ -29,8 +29,12 @@ date: 21
 day: Friday
 timestamp: Fri, 21 Oct 2022, 10:00 GMT+5:30
 presence: In Person
-share-title: Share this event
-share-link: buttonlink
+form-active: false
+
+--- ft.h3: Registration
+
+Some registration information here. [Link to register](demo/)
+
 
 --- ft.h3: Event Information
 
