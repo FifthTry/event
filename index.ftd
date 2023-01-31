@@ -1,12 +1,6 @@
 -- import: fifthtry.github.io/event/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
-
--- boolean is-mobile: false
-
--- is-mobile:true
-if: $ftd.device == mobile
-
-
+-- import: fifthtry.github.io/common as common
 
 
 
@@ -24,7 +18,7 @@ Take a look at below documentation to know how to create events.
 -- pd.package: Event and its usage
 name: fifthtry.github.io/event
 
-To use `-- evemt` on your web package, add below into `FPM.ftd` file. 
+To use `-- event` on your web package, add below into `FPM.ftd` file. 
 
 Event has dependency on `-- common.host` and `-- common.venue` data records. 
 So, you need to add `common` component dependency, add it as shown below:
@@ -64,7 +58,7 @@ link: will-be-updated-soon
 
 \-- event.event: FTD Workshop on Todo App
 src: $assets.files.images.events.workshop-21st-oct.png  
----> events banner image recommonded size 2000x1000px
+--> events banner image recommonded size 2000x1000px
 host: $amitu
 venue: $venue
 month: Oct
@@ -83,6 +77,7 @@ component inside this body text.
 
 [Click here to see event demo](demo/)
 
+-- end: ft.page
 
 
 
@@ -91,10 +86,7 @@ component inside this body text.
 
 
 
-
-
-
--- ftd.column event:
+-- component event:
 optional caption title:
 boolean hero: true
 boolean right-panel: true
@@ -110,513 +102,523 @@ optional string presence:
 common.host host:
 common.venue venue:
 optional body body:
-width: fill
-open: true
-append-at: event-container
 
---- ftd.column:
-if: $hero
-width: fill
-id: inner-wrap
+-- ftd.column:
+width: fill-container
 
---- ftd.column:
+-- ftd.column:
+if: { event.hero }
+width: fill-container
+
+-- ftd.column:
 anchor: parent
-bottom: -60
-right: 30
-border-radius: 4
-shadow-color: $fpm.color.main.background.step-2
-shadow-offset-x: 1
-shadow-offset-y: 1
-shadow-size: 1
-shadow-blur: 0
-width: 120
-width if $is-mobile: 80
-id: floating-wrap
+bottom.px: -60
+right.px: 30
+border-radius.px: 4
+;;shadow-color: $inherited.colors.background.step-2
+;;shadow-offset-x: 1
+;;shadow-offset-y: 1
+;;shadow-size: 1
+;;shadow-blur: 0
+width.fixed.px: 120
+width.fixed.px if { ftd.device == "mobile"}: 80
 
---- ftd.text: $month
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-background-color: $fpm.color.main.custom.one
-width: fill
+-- ftd.text: 
+if: { event.month != NULL}
+text: $event.month
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+background.solid: $inherited.colors.custom.one
+width: fill-container
 text-align: center
-style: bold
-border-top-radius: 4
-padding: 4
+;;style: bold
+border-top-left-radius.px: 4
+border-top-right-radius.px: 4
+padding.px: 4
 text-transform: uppercase
 
---- ftd.text: $date
-role: $fpm.type.heading-small
-color: $fpm.color.main.background.base
-background-color: $fpm.color.main.cta-secondary.text
-width: fill
+-- ftd.text: 
+if: { event.date != NULL}
+text: $event.date
+role: $inherited.types.heading-small
+color: $inherited.colors.background.base
+background.solid: $inherited.colors.cta-secondary.text
+width: fill-container
 text-align: center
-style: bold
-padding-vertical: $fpm.space.space-3
-padding-vertical if $is-mobile: $fpm.space.space-1
+;;style: bold
+padding-vertical.px: 12
+padding-vertical.px if { ftd.device == "mobile" }: 2
 
---- ftd.text: $day
-if: not $is-mobile
-role: $fpm.type.copy-large
-color: $fpm.color.main.background.base
-background-color: $fpm.color.main.cta-secondary.text
-width: fill
+-- ftd.text: 
+if: { ftd.device != "mobile" }
+text: $event.day
+role: $inherited.types.copy-large
+color: $inherited.colors.background.base
+background.solid: $inherited.colors.cta-secondary.text
+width: fill-container
 text-align: center
-border-bottom-radius: 4
-padding: 2
+border-bottom-right-radius.px: 4
+border-bottom-left-radius.px: 4
+padding.px: 2
 
---- container: floating-wrap
-
---- ftd.text: $day
-if: $is-mobile
-role: $fpm.type.copy-tight
-color: $fpm.color.main.background.base
-background-color: $fpm.color.main.cta-secondary.text
-width: fill
+-- ftd.text:
+if: { ftd.device == "mobile" }
+text: $event.day
+role: $inherited.types.copy-small
+color: $inherited.colors.background.base
+background.solid: $inherited.colors.cta-secondary.text
+width: fill-container
 text-align: center
-border-bottom-radius: 4
-padding: 2
+border-bottom-right-radius.px: 4
+padding.px: 2
 
---- container: inner-wrap
+-- end: ftd.column
 
---- ftd.image:
-src: $src
-width: fill
+-- ftd.image:
+src: $event.src
+width: fill-container
 
---- container: ftd.main
+-- end: ftd.column
 
---- ftd.column:
-width: fill
-margin-top: $fpm.space.space-12
+-- ftd.column:
+width: fill-container
+margin-top.px: 72
 
---- ftd.text: $title
-width: fill
-role: $fpm.type.heading-large
-color: $fpm.color.main.text-strong
-style: bold
+-- ftd.text: $event.title
+width: fill-container
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+;;style: bold
 
---- ftd.row:
-margin-top: $fpm.space.space-3
-id: event-details
+-- ftd.row:
+margin-top.px: 12
+;;id: event-details
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.static.calendar.svg
-width: 16
-height: 16
-align: center
-margin-right: 6
+width.fixed.px: 16
+height.fixed.px: 16
+;;align: center
+margin-right.px: 6
 
---- ftd.text: $timestamp
-role: $fpm.type.fine-print
-color: $fpm.color.main.custom.nine
-style: bold
+-- ftd.text: 
+if: { $event.timestamp != NULL}
+text: $event.timestamp
+role: $inherited.types.fine-print
+color: $inherited.colors.custom.nine
+;;style: bold
 
---- ftd.text: $presence
-role: $fpm.type.fine-print
-color: $fpm.color.main.cta-primary.base
-style: bold
-margin-left: 10
+-- ftd.text: 
+if: { $event.presence != NULL}
+text: $event.presence
+role: $inherited.types.fine-print
+color: $inherited.colors.cta-primary.base
+;;style: bold
+margin-left.px: 10
 
---- container: ftd.main
+-- end: ftd.row
 
---- ftd.column:
-width: fill
-margin-top: $fpm.space.space-6
+-- end: ftd.column
 
---- body-wrap:
-id: event-container
-host: $host
-venue: $venue
-share-title: $share-title
-share-link: $share-link
-right-panel: $right-panel
-form-active: $form-active
-body: $body
+-- ftd.column:
+width: fill-container
+margin-top.px: 24
 
+-- body-wrap:
+host: $event.host
+venue: $event.venue
+share-title: $event.share-title
+share-link: $event.share-link
+right-panel: $event.right-panel
+;;form-active: $event.form-active
+body: $event.body
 
+-- end: ftd.column
 
+-- end: ftd.column
 
-
-
-
-
-
+-- end: event
 
 
--- ftd.column body-wrap:
+
+
+
+
+
+
+-- component body-wrap:
 boolean right-panel: true
 boolean share-button: false
-boolean form-active: $PARENT.form-active
+boolean form-active: true
 common.host host:
 common.venue venue:
 optional string share-title:
 optional string share-link:
 optional body body:
-open: true
-append-at: body-container
+;;open: true
 
---- ftd.row:
-if: not $is-mobile
-width: fill
-id: body-wrapper
-spacing: 32
+-- ftd.column:
+width: fill-container
 
---- ftd.column:
-if: $right-panel
-width: percent 70
-id: body-container
-border-right: 1
-border-color: $fpm.color.main.border
-padding-right: 32
-margin-top: 32
+-- ftd.row:
+if: { ftd.device != "mobile" }
+width: fill-container
+;;id: body-wrapper
+spacing.fixed.px: 32
 
---- event-form:
-form-active: $form-active
+-- ftd.column:
+if: { body-wrap.right-panel }
+width.fixed.percent: 70
+border-right-width.px: 1
+border-color: $inherited.colors.border-strong
+padding-right.px: 32
+margin-top.px: 32
+height: auto
 
---- ftd.text:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-text: $body
-margin-top: -48
+-- event-form:
+;;form-active: $body-wrap.form-active
 
---- container: body-wrapper
+-- ftd.text:
+if: { body-wrap.body != NULL}
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+text: $body-wrap.body
+margin-top.px: -48
 
---- ftd.column:
-if: not $right-panel
-width: fill
-id: body-container
+-- end: ftd.column
 
---- event-form:
-form-active: $form-active
+-- ftd.column:
+if: { !body-wrap.right-panel}
+width: fill-container
+;;id: body-container
 
---- ftd.text:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-text: $body
-margin-top: -48
+-- event-form:
+;;form-active: $body-wrap.form-active
 
---- container: body-wrapper
+-- ftd.text:
+if: { body-wrap.body != NULL}
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+text: $body-wrap.body
+margin-top.px: -48
 
---- ftd.column:
-if: $right-panel
-width: percent 30
-margin-top: $fpm.space.space-7
-id: host-panel
+-- end: ftd.column
 
---- ftd.column:
-width: fill
-id: host-details
-margin-bottom: $fpm.space.space-8
+-- ftd.column:
+if: { body-wrap.right-panel }
+width.fixed.percent: 30
+margin-top.px: 32
+margin-left.px: 32
 
---- ftd.text: Host
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-margin-bottom: $fpm.space.space-4
+-- ftd.column:
+width: fill-container
+margin-bottom.px: 40
 
---- ftd.row:
-spacing: 8
+-- ftd.text: Host
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+margin-bottom.px: 16
 
---- ftd.image:
-src: $host.avatar
-width: 32
-height: 32
-align: top
-border-radius: 500
+-- ftd.row:
+spacing.fixed.px: 8
 
---- ftd.text: $host.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $host.website
+-- ftd.image:
+src: $body-wrap.host.avatar
+width.fixed.px: 32
+height.fixed.px: 32
+;;align-content: top-left
+border-radius.px: 500
 
---- container: host-details
+-- ftd.text:
+if: { body-wrap.host.name != NULL}
+text: $body-wrap.host.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.host.website
 
---- ftd.text: $host.title
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-link: $host.website
-margin-left: $fpm.space.space-8
+-- end: ftd.row
 
---- container: host-details
+-- ftd.text: $body-wrap.host.title
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+link: $body-wrap.host.website
+margin-left.px: 40
 
---- ftd.column:
-margin-left: $fpm.space.space-8
-margin-top: $fpm.space.space-2
+-- ftd.column:
+margin-left.px: 40
+margin-top.px: 8
 
---- ftd.text: $host.email
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
-style: bold
+-- ftd.text:
+if: { body-wrap.host.email != NULL}
+text: $body-wrap.host.email
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+;;style: bold
 
---- container: host-panel
+-- end: ftd.column
 
---- ftd.row:
-if: $venue.link is not null
+-- ftd.row:
+if: { body-wrap.venue.link != NULL}
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.static.video.svg
-width: 18
-height: 18
-align: center
-margin-left: 20
-margin-right: 10
-link: $venue.link
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
+margin-left.px: 20
+margin-right.px: 10
+link: $body-wrap.venue.link
 
---- ftd.text: $venue.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $venue.link
+/-- ftd.text:
+if: { body-wrap.venue.name != NULL}
+text: $body-wrap.venue.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.venue.link
 
---- container: host-panel
+-- end: ftd.row
 
---- ftd.column:
-if: $venue.link is null
-width: fill
+-- ftd.column:
+if: {body-wrap.venue.link == NULL}
+width: fill-container
+margin-top.px: 24
 
---- ftd.text: Venue
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-margin-bottom: $fpm.space.space-4
+-- ftd.text: Venue
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+margin-bottom.px: 16
 
---- ftd.row:
+-- ftd.row:
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.static.map.svg
-width: 18
-height: 18
-align: center
-margin-right: 10
-link: $venue.location
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
+margin-right.px: 10
+link: $body-wrap.venue.location
 
---- ftd.text: $venue.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $venue.location
+-- ftd.text: 
+if: { body-wrap.venue.name != NULL}
+text: $body-wrap.venue.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.venue.location
 
---- container: host-panel
+-- end: ftd.row
+-- end: ftd.column
 
---- ftd.text: $venue.address
-if: $venue.address is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-left: $fpm.space.space-6
-margin-top: $fpm.space.space-3
+-- ftd.text: 
+if: { body-wrap.venue.address != NULL}
+text: $body-wrap.venue.address
+if: { body-wrap.venue.address != NULL}
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+margin-left.px: 24
+margin-top.px: 12
 
---- container: host-panel
+-- ftd.row:
+spacing.fixed.px: 8
+margin-left.px: 24
+margin-top.px: 12
 
---- ftd.row:
-spacing: 8
-margin-left: $fpm.space.space-6
-margin-top: $fpm.space.space-3
+-- ftd.text: 
+if: { body-wrap.venue.website != NULL}
+text: $body-wrap.venue.website
+role: $inherited.types.fine-print
+color: $inherited.colors.custom.one
+;;style: bold
 
---- ftd.text: $venue.website
-role: $fpm.type.fine-print
-color: $fpm.color.main.custom.one
-style: bold
 
---- container: host-panel
+-- end: ftd.row
 
---- ftd.row:
-if: $share-button
-spacing: 8
-border-width: 1
-border-color: $fpm.color.main.border
-padding: $fpm.space.space-4
-border-radius: 6
-background-color: $fpm.color.main.background.step-1
-background-color  if $MOUSE-IN: $fpm.color.main.background.step-2
-link: $share-link
+-- end: ftd.column
 
---- ftd.image:
+-- ftd.row:
+if: {body-wrap.share-button}
+spacing.fixed.px: 8
+border-width.px: 1
+border-color: $inherited.colors.border
+padding.px: 16
+border-radius.px: 6
+background.solid: $inherited.colors.background.step-1
+;;background.solid  if $MOUSE-IN: $inherited.colors.background.step-2
+link: $body-wrap.share-link
+
+-- ftd.image:
 src: $assets.files.static.share-button.svg
-width: 18
-height: 18
-align: center
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
 
---- ftd.text: $share-title
-role: $fpm.type.copy-large
-color: $fpm.color.main.custom.three
+-- ftd.text: $body-wrap.share-title
+role: $inherited.types.copy-large
+color: $inherited.colors.custom.three
 
---- container: ftd.main
+-- end: ftd.row
 
-;mobile view starts
---- ftd.column:
-if: $is-mobile
-width: fill
-id: body-wrapper
-spacing: 32
+-- end: ftd.column
 
---- ftd.column:
-if: not $right-panel
-width: fill
-id: body-container
+-- end: ftd.row
 
---- event-form:
-form-active: $form-active
+-- ftd.row:
+if: { ftd.device == "mobile" }
+width: fill-container
+;;id: body-wrapper
+spacing.fixed.px: 32
 
---- ftd.text:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-text: $body
-margin-top: -48
+-- ftd.column:
+width: fill-container
+margin-bottom.px: 40
 
---- container: body-wrapper
+-- ftd.text: Host
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+margin-bottom.px: 16
 
---- ftd.column:
-if: $right-panel
-width: fill
-margin-top: $fpm.space.space-6
-id: host-panel
+-- ftd.row:
+spacing.fixed.px: 8
 
+-- ftd.image:
+src: $body-wrap.host.avatar
+width.fixed.px: 32
+height.fixed.px: 32
+;;align-content: top-left
+border-radius.px: 500
 
---- ftd.column:
-width: fill
-id: host-details
-margin-bottom: $fpm.space.space-8
+-- ftd.text:
+if: { body-wrap.host.name != NULL}
+text: $body-wrap.host.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.host.website
 
---- ftd.text: Host
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-margin-bottom: $fpm.space.space-4
+-- end: ftd.row
 
---- ftd.row:
-spacing: 8
+-- ftd.text: $body-wrap.host.title
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+link: $body-wrap.host.website
+margin-left.px: 40
 
---- ftd.image:
-src: $host.avatar
-width: 32
-height: 32
-align: top
-border-radius: 500
+-- ftd.column:
+margin-left.px: 40
+margin-top.px: 8
 
---- ftd.text: $host.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $host.website
+-- ftd.text:
+if: { body-wrap.host.email != NULL}
+text: $body-wrap.host.email
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+;;style: bold
 
---- container: host-details
+-- end: ftd.column
 
---- ftd.text: $host.title
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-link: $host.website
-margin-left: $fpm.space.space-8
+-- ftd.row:
+if: { body-wrap.venue.link != NULL}
 
---- container: host-details
-
---- ftd.column:
-margin-left: $fpm.space.space-8
-margin-top: $fpm.space.space-2
-
---- ftd.text: $host.email
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
-style: bold
-
---- container: host-panel
-
---- ftd.row:
-if: $venue.link is not null
-
---- ftd.image:
+-- ftd.image:
 src: $assets.files.static.video.svg
-width: 18
-height: 18
-align: center
-margin-left: 20
-margin-right: 10
-link: $venue.link
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
+margin-left.px: 20
+margin-right.px: 10
+link: $body-wrap.venue.link
 
---- ftd.text: $venue.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $venue.link
+/-- ftd.text:
+if: { body-wrap.venue.name != NULL}
+text: $body-wrap.venue.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.venue.link
 
---- container: host-panel
+-- end: ftd.row
 
---- ftd.column:
-if: $venue.link is null
-width: fill
+-- ftd.column:
+if: {body-wrap.venue.link == NULL}
+width: fill-container
+margin-top.px: 24
 
---- ftd.text: Venue
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-margin-bottom: $fpm.space.space-4
+-- ftd.text: Venue
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+margin-bottom.px: 16
 
---- ftd.row:
-spacing: 8
+-- ftd.row:
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.static.map.svg
-width: 18
-height: 18
-align: center
-link: $venue.location
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
+margin-right.px: 10
+link: $body-wrap.venue.location
 
---- ftd.text: $venue.name
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-link: $venue.location
+-- ftd.text: 
+if: { body-wrap.venue.name != NULL}
+text: $body-wrap.venue.name
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+link: $body-wrap.venue.location
 
---- container: host-panel
+-- end: ftd.row
+-- end: ftd.column
 
---- ftd.text: $venue.address
-if: $venue.address is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-style: bold
-margin-left: $fpm.space.space-6
-margin-top: $fpm.space.space-3
+-- ftd.text: 
+if: { body-wrap.venue.address != NULL}
+text: $body-wrap.venue.address
+if: { body-wrap.venue.address != NULL}
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+margin-left.px: 24
+margin-top.px: 12
 
---- container: host-panel
+-- ftd.row:
+spacing.fixed.px: 8
+margin-left.px: 24
+margin-top.px: 12
 
---- ftd.row:
-spacing: 8
-margin-left: $fpm.space.space-6
-margin-top: $fpm.space.space-3
+-- ftd.text: 
+if: { body-wrap.venue.website != NULL}
+text: $body-wrap.venue.website
+role: $inherited.types.fine-print
+color: $inherited.colors.custom.one
+;;style: bold
 
---- ftd.text: $venue.website
-role: $fpm.type.fine-print
-color: $fpm.color.main.custom.one
-style: bold
 
---- container: host-panel
+-- end: ftd.row
 
---- ftd.row:
-if: $share-button
-spacing: 8
-border-width: 1
-border-color: $fpm.color.main.border
-padding: $fpm.space.space-4
-border-radius: 6
-background-color: $fpm.color.main.background.step-1
-background-color  if $MOUSE-IN: $fpm.color.main.background.step-2
-link: $share-link
+-- end: ftd.column
 
---- ftd.image:
+-- ftd.row:
+if: {body-wrap.share-button}
+spacing.fixed.px: 8
+border-width.px: 1
+border-color: $inherited.colors.border
+padding.px: 16
+border-radius.px: 6
+background.solid: $inherited.colors.background.step-1
+;;background.solid  if $MOUSE-IN: $inherited.colors.background.step-2
+link: $body-wrap.share-link
+
+-- ftd.image:
 src: $assets.files.static.share-button.svg
-width: 18
-height: 18
-align: center
+width.fixed.px: 18
+height.fixed.px: 18
+;;align: center
 
---- ftd.text: $share-title
-role: $fpm.type.copy-large
-color: $fpm.color.main.custom.three
+-- ftd.text: $body-wrap.share-title
+role: $inherited.types.copy-large
+color: $inherited.colors.custom.three
 
---- container: body-wrapper
+-- end: ftd.row
 
---- ftd.column:
-if: $right-panel
-width: fill
-id: body-container
-margin-top: 32
+-- end: ftd.row
 
---- event-form:
-form-active: $form-active
+-- end: ftd.column
 
---- ftd.text:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-text: $body
-margin-top: -48
+-- end: body-wrap
 
 
 
@@ -626,71 +628,79 @@ margin-top: -48
 
 
 
+-- component event-form:
+;;boolean form-active: $PARENT.form-active
 
+-- ftd.column:
+width: fill-container
 
+-- ftd.column:
+;;if: {event-form.form-active}
+;;id: left-panel
+width: fill-container
+spacing.fixed.px: 16
 
--- ftd.column event-form:
-boolean form-active: $PARENT.form-active
-width: fill
+-- ftd.text: Registration
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
 
---- ftd.column:
-if: $form-active
-id: left-panel
-width: fill
-spacing: 16
-
---- ftd.text: Registration
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-
---- ftd.text: 
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+-- ftd.text: 
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 text: Hello! To join the event, please register below.
 
---- ftd.column:
-width: fill
-margin-bottom: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
-border-radius: 8
+-- ftd.column:
+width: fill-container
+margin-bottom.px: 40
+background.solid: $inherited.colors.background.step-1
+border-radius.px: 8
 
---- form.input-box: Name
+/-- form.input-box: Name
 label-top: true
 $value: name
 $error: This field is mandatory
 placeholder: Your name
 
---- form.input-box: Email
+/-- form.input-box: Email
 label-top: true
 $value: name
 $error: This field is mandatory
 placeholder: you@email.com
 
---- ftd.column:
-width: fill
-margin-left: $fpm.space.space-4
-margin-top: $fpm.space.space-6
-margin-bottom: $fpm.space.space-4
+-- ftd.column:
+width: fill-container
+margin-left.px: 16
+margin-top.px: 24
+margin-bottom.px: 16
 
---- button.button: Register
+-- button.button: Register
 role: primary
 large: true
 
---- container: left-panel
+-- end: ftd.column
 
---- ftd.column:
-if: not $form-active
-width: fill
-margin-bottom: $fpm.space.space-8
-spacing: 16
-id: left-panel
+-- end: ftd.column
 
---- ftd.text: Registration
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+-- end: ftd.column
 
---- ftd.text: 
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+-- ftd.column:
+;;if: {!form-active}
+width: fill-container
+margin-bottom.px: 40
+spacing.fixed.px: 16
+;;id: left-panel
+
+-- ftd.text: Registration
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+
+-- ftd.text: 
+role: $inherited.types.copy-small
+color: $inherited.colors.text
 text: This event is no longer taking registrations.
 
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: event-form
