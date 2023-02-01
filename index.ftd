@@ -18,7 +18,7 @@ Take a look at below documentation to know how to create events.
 -- pd.package: Event and its usage
 name: fifthtry.github.io/event
 
-To use `-- event` on your web package, add below into `FPM.ftd` file. 
+To use `-- event` on your web package, add below into `FASTN.ftd` file. 
 
 Event has dependency on `-- common.host` and `-- common.venue` data records. 
 So, you need to add `common` component dependency, add it as shown below:
@@ -26,11 +26,11 @@ So, you need to add `common` component dependency, add it as shown below:
 -- cb.code:
 lang: ftd
 
-\-- fpm.dependency: fifthtry.github.io/event as event
-\-- fpm.auto-import: event
+\-- fastn.dependency: fifthtry.github.io/event as event
+\-- fastn.auto-import: event
 
-\-- fpm.dependency: fifthtry.github.io/common as common
-\-- fpm.auto-import: common
+\-- fastn.dependency: fifthtry.github.io/common as common
+\-- fastn.auto-import: common
 
 
 
