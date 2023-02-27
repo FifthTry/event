@@ -8,6 +8,7 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/event/main
 -- fastn.dependency: fifthtry.github.io/common as common
 -- fastn.dependency: fifthtry.github.io/form as form
 -- fastn.dependency: fifthtry.github.io/button as button
+-- fastn.dependency: fifthtry.github.io/doc-site as ds
 
 
 -- fastn.auto-import: pd
@@ -17,6 +18,6 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/event/main
 -- fastn.auto-import: fastn
 -- fastn.auto-import: pd/typography as tf
 -- fastn.auto-import: pd/code-block as cb
--- fastn.auto-import: pd/forest-theme as ft
+-- fastn.auto-import: ds as ft
 
 

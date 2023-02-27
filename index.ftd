@@ -102,6 +102,7 @@ optional string presence:
 common.host host:
 common.venue venue:
 optional body body:
+children body-wrap:
 
 -- ftd.column:
 width: fill-container
@@ -116,11 +117,6 @@ anchor: parent
 bottom.px: -60
 right.px: 30
 border-radius.px: 4
-;;shadow-color: $inherited.colors.background.step-2
-;;shadow-offset-x: 1
-;;shadow-offset-y: 1
-;;shadow-size: 1
-;;shadow-blur: 0
 width.fixed.px: 120
 width.fixed.px if { ftd.device == "mobile"}: 80
 
@@ -233,6 +229,7 @@ share-link: $event.share-link
 right-panel: $event.right-panel
 form-active: *$event.form-active
 body: $event.body
+wrap: $event.body-wrap
 
 -- end: ftd.column
 
@@ -248,7 +245,7 @@ body: $event.body
 
 
 -- component body-wrap:
-boolean right-panel: true
+boolean right-panel: false
 boolean share-button: false
 boolean form-active: true
 common.host host:
@@ -256,7 +253,7 @@ common.venue venue:
 optional string share-title:
 optional string share-link:
 optional body body:
-;;open: true
+children wrap: 
 
 -- ftd.column:
 width: fill-container
@@ -264,7 +261,6 @@ width: fill-container
 -- ftd.row:
 if: { ftd.device != "mobile" }
 width: fill-container
-;;id: body-wrapper
 spacing.fixed.px: 32
 
 -- ftd.column:
@@ -284,7 +280,12 @@ if: { body-wrap.body != NULL}
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 text: $body-wrap.body
-margin-top.px: -48
+
+-- ftd.column:
+width: fill-container
+children: $body-wrap.wrap
+
+-- end: ftd.column
 
 -- end: ftd.column
 
@@ -301,7 +302,12 @@ if: { body-wrap.body != NULL}
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 text: $body-wrap.body
-margin-top.px: -48
+
+-- ftd.column:
+width: fill-container
+children: $body-wrap.wrap
+
+-- end: ftd.column
 
 -- end: ftd.column
 
@@ -407,6 +413,7 @@ color: $inherited.colors.text-strong
 link: $body-wrap.venue.location
 
 -- end: ftd.row
+
 -- end: ftd.column
 
 -- ftd.text: 
@@ -462,15 +469,21 @@ color: $inherited.colors.custom.three
 
 -- end: ftd.row
 
--- ftd.row:
+
+
+
+
+-- ftd.column:
 if: { ftd.device == "mobile" }
 width: fill-container
-;;id: body-wrapper
 spacing.fixed.px: 32
 
 -- ftd.column:
+if: { body-wrap.right-panel }
 width: fill-container
-margin-bottom.px: 40
+
+-- ftd.column:
+width: fill-container
 
 -- ftd.text: Host
 role: $inherited.types.heading-small
@@ -564,6 +577,7 @@ color: $inherited.colors.text-strong
 link: $body-wrap.venue.location
 
 -- end: ftd.row
+
 -- end: ftd.column
 
 -- ftd.text: 
@@ -615,7 +629,53 @@ color: $inherited.colors.custom.three
 
 -- end: ftd.row
 
--- end: ftd.row
+-- end: ftd.column
+
+-- ftd.column:
+if: { body-wrap.right-panel }
+width: fill-container
+height: auto
+
+-- event-form:
+form-active: $body-wrap.form-active
+
+-- ftd.text:
+if: { body-wrap.body != NULL}
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+text: $body-wrap.body
+
+-- ftd.column:
+width: fill-container
+children: $body-wrap.wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- ftd.column:
+if: { !body-wrap.right-panel}
+width: fill-container
+;;id: body-container
+
+-- event-form:
+form-active: $body-wrap.form-active
+
+-- ftd.text:
+if: { body-wrap.body != NULL}
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+text: $body-wrap.body
+
+-- ftd.column:
+width: fill-container
+children: $body-wrap.wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
 
 -- end: ftd.column
 
