@@ -90,7 +90,7 @@ component inside this body text.
 optional caption title:
 boolean hero: true
 boolean right-panel: true
-boolean form-active: true
+optional boolean form-active: true
 ftd.image-src src:
 optional string timestamp:
 optional string day:
@@ -105,6 +105,7 @@ optional body body:
 
 -- ftd.column:
 width: fill-container
+margin-bottom.px: 40
 
 -- ftd.column:
 if: { event.hero }
@@ -230,7 +231,7 @@ venue: $event.venue
 share-title: $event.share-title
 share-link: $event.share-link
 right-panel: $event.right-panel
-;;form-active: $event.form-active
+form-active: *$event.form-active
 body: $event.body
 
 -- end: ftd.column
@@ -276,11 +277,11 @@ margin-top.px: 32
 height: auto
 
 -- event-form:
-;;form-active: $body-wrap.form-active
+form-active: $body-wrap.form-active
 
 -- ftd.text:
 if: { body-wrap.body != NULL}
-role: $inherited.types.fine-print
+role: $inherited.types.copy-regular
 color: $inherited.colors.text
 text: $body-wrap.body
 margin-top.px: -48
@@ -293,11 +294,11 @@ width: fill-container
 ;;id: body-container
 
 -- event-form:
-;;form-active: $body-wrap.form-active
+form-active: $body-wrap.form-active
 
 -- ftd.text:
 if: { body-wrap.body != NULL}
-role: $inherited.types.fine-print
+role: $inherited.types.copy-regular
 color: $inherited.colors.text
 text: $body-wrap.body
 margin-top.px: -48
@@ -629,13 +630,13 @@ color: $inherited.colors.custom.three
 
 
 -- component event-form:
-;;boolean form-active: $PARENT.form-active
+boolean form-active: false
 
 -- ftd.column:
 width: fill-container
 
 -- ftd.column:
-;;if: {event-form.form-active}
+if: {event-form.form-active}
 ;;id: left-panel
 width: fill-container
 spacing.fixed.px: 16
@@ -683,18 +684,18 @@ large: true
 
 -- end: ftd.column
 
--- ftd.column:
-;;if: {!form-active}
+/-- ftd.column:
+if: {event-form.form-active}
 width: fill-container
 margin-bottom.px: 40
 spacing.fixed.px: 16
 ;;id: left-panel
 
--- ftd.text: Registration
+/-- ftd.text: Registration
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 
--- ftd.text: 
+/-- ftd.text: 
 role: $inherited.types.copy-small
 color: $inherited.colors.text
 text: This event is no longer taking registrations.
