@@ -1,8 +1,6 @@
 -- import: fastn
 
 -- fastn.package: fifthtry.github.io/event
-zip: github.com/fifthtry/event/archive/refs/heads/main.zip
-download-base-url: https://raw.githubusercontent.com/fifthtry/event/main
 
 -- fastn.dependency: fifthtry.github.io/package-doc as pd
 -- fastn.dependency: fifthtry.github.io/common as common
